@@ -26,14 +26,16 @@ describe("reducer", function() {
     expect(state.auralStatus).toEqual("");
     expect(state.correctAnswer).toEqual(newCorrectAnswer);
   });
-  it("make guess should record a guess", function(){
+
+  //===== testing MAKE_GUESS =====
+  it("make guess should record a guess", function() {
     let state = {
       guesses: [],
       feedback: "Make your guess!",
       auralStatus: "",
-      correctAnswer: 5     
-    }
-  
+      correctAnswer: 5
+    };
+
     state = reducer(state, makeGuess(10));
     expect(state.guesses).toEqual([10]);
     expect(state.feedback).toEqual("You're Hot!");
@@ -49,13 +51,24 @@ describe("reducer", function() {
     state = reducer(state, makeGuess(80));
     expect(state.guesses).toEqual([10, 15, 35, 80]);
     expect(state.feedback).toEqual("You're Ice Cold...");
-    
+
     state = reducer(state, makeGuess(5));
     expect(state.guesses).toEqual([10, 15, 35, 80, 5]);
     expect(state.feedback).toEqual("You got it!");
-  })
+  });
+  //===== testing AURAL UPDATE =====
+
+  it ('aural update test', function(){
+    let state = {
+      guesses: [1, 2, 3],
+      feedback: "Bananas!",
+      auralStatus: "",
+      correctAnswer: 5,
+    }
+    state = reducer(state, generateAuralUpdate());
+    expect(state.auralStatus).toEqual("Here's the status of the game right now: Bananas! You've made 3 guesses. In order of most- to least-recent, they are: 3, 2, 1")
+  });
+  
 });
 
-//===== testing MAKE_GUESS =====
 
-//===== testing AURAL UPDATE =====
