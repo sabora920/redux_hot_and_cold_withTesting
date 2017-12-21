@@ -58,17 +58,21 @@ describe("reducer", function() {
   });
   //===== testing AURAL UPDATE =====
 
-  it ('aural update test', function(){
+  it("aural update test", function() {
     let state = {
       guesses: [1, 2, 3],
       feedback: "Bananas!",
       auralStatus: "",
-      correctAnswer: 5,
-    }
+      correctAnswer: 5
+    };
     state = reducer(state, generateAuralUpdate());
-    expect(state.auralStatus).toEqual("Here's the status of the game right now: Bananas! You've made 3 guesses. In order of most- to least-recent, they are: 3, 2, 1")
+    expect(state.auralStatus).toEqual(
+      "Here's the status of the game right now: Bananas! You've made 3 guesses. In order of most- to least-recent, they are: 3, 2, 1"
+    );
   });
-  
 });
 
 
+//should return for initial state if no state or no action passed
+
+//should  return current state on known state and unknown action
